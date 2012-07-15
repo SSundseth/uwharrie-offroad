@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: uwharrie-offroad_development
   pool: 5
-  username: uwharrie-offroad
+  username: viget
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
