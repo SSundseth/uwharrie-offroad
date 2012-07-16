@@ -43,7 +43,7 @@ test:
   encoding: unicode
   database: uwharrie-offroad_test
   pool: 5
-  username: uwharrie-offroad
+  username: viget
   password:
 
 production:

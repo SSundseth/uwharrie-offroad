@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
 
   attr_accessible :name, :email, :password
 
-  validates_presence_of :name
+  validates :name, :presence => true
   validates_uniqueness_of :name
-  validates_presence_of :password, :on => :create
+  validates_uniqueness_of :email
+  validates :password, :presence => true
   validates_confirmation_of :password, :if => :password_required?
 end
