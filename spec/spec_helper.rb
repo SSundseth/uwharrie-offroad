@@ -37,3 +37,11 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+module RSpec::Rails
+  module ControllerExampleGroup
+    def log_in(user)
+      session[:user_id] = user.id
+    end
+  end
+end

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       self.current_user = @user
-      redirect_to root_path, :notice => "You have successfully registered"
+      redirect_to root_url, :notice => "You have successfully registered"
     else
       render :new
     end
