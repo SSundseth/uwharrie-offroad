@@ -1,3 +1,9 @@
 <p><%= @trail.name %></p>
 <p><%= @trail.length %></p>
 <p><%= @trail.difficulty %></p>
+<% if @trail.timings.any? %>
+  <p>
+  Best Time: <%= link_to @trail.best_time_user.name, @trail.best_time_user %> in
+  <%= Time.at(@trail.best_timing.seconds).utc.strftime("%H:%M:%S") %>
+  </p>
+<% end %>

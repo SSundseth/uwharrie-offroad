@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716163725) do
+ActiveRecord::Schema.define(:version => 20120716193044) do
+
+  create_table "timings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "trail_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "seconds"
+  end
 
   create_table "trails", :force => true do |t|
     t.string   "name"
