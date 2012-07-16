@@ -7,7 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="/">Uwharrie Offroad</a>
+        <div class="utilities pull-right">
+          <% if logged_in? %>
+            <%= "Welcome, " %><%= link_to current_user.name, current_user %> |
+            <%= link_to "Logout", logout_path %>
+          <% else %>
+            <%= link_to "Sign Up", signup_path %> |
+            <%= link_to "Login", login_path %>
+          <% end %>
+        </div>
+		</div>
+  </div>
+</div>
 
+<% flash.each do |key, value| %>
+	<div class="alert alert-heading" <%= key %>>
+		<%= value %>
+	</div>
+        <% end %>
 <%= yield %>
 
 </body>

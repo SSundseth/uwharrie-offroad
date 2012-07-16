@@ -1,0 +1,5 @@
+<%= simple_form_for current_user do |f| %>
+  <%= f.input :email, :input_html => { :class => "span4" } %>
+  <%= f.input :password, :input_html => { :class => "span4" } %>
+  <%= f.submit :class => 'btn btn-primary' %>
+<% end %>

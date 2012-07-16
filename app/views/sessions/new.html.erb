@@ -1,0 +1,18 @@
+<div class="page-header">
+	<h2><span>Sign In</span></h2>
+</div>
+
+<%= form_tag session_path do %>
+  <p>
+    <%= label_tag "username" %>
+    <%= text_field_tag "name", nil, :class => "span4" %>
+  </p>
+
+  <p>
+    <%= label_tag "password" %>
+    <%= password_field_tag "password", nil, :class => "span4" %>
+  </p>
+
+  <%= button_tag "Sign In", :class => "btn btn-primary" %> |
+
+<% end %>
