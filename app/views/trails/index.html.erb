@@ -1,0 +1,10 @@
+<ul class="nav nav-list">
+  <li class="nav-header">
+    Click on a trail to see more info
+  </li>
+  <% @trails.each do |t| %>
+    <li>
+      <%= link_to t.name, t %>
+    </li>
+  <% end %>
+</ul>
