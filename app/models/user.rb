@@ -12,8 +12,6 @@ class User < ActiveRecord::Base
 
   has_many :timings
 
-  before_create { generate_token }
-
   def best_times
     timings.select('trail_id, MIN(seconds) AS min').
       group('trail_id').order('min')
