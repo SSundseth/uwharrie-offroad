@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   def best_times
     timings.select('trail_id, MIN(seconds) AS min').
-      group_by('trail_id')
+      group('trail_id').order('min')
+
   end
 end

@@ -3,3 +3,14 @@
 <% if current_user == @user %>
   <%= link_to "Edit Info", edit_user_path(@user) %>
 <% end %>
+<p>
+  <h2>Best Times</h2>
+    <% @user.best_times.each do |t| %>
+      <%= t.trail.name %>:
+      <%= Time.at(t.min.to_i).utc.strftime("%H:%M:%S") %>
+      <% if t.min.to_i == t.trail.best_timing.seconds %>
+        <h4>Best Overall!</h4>
+      <% end %>
+      <br />
+    <% end %>
+</p>
