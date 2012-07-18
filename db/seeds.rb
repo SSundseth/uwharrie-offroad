@@ -23,6 +23,8 @@ User.create(:name => 'Andrew', :email => 'ahove11@yahoo.com',       :password =>
 ids = User.all(:select => :id).collect(&:id)
 
 # Times
-Trail.all.each do |trail|
-  trail.timings.create(:user_id => ids.shuffle.first, :seconds => (rand(5000) - rand(2000)))
+5.times do |t|
+  Trail.all.each do |trail|
+    trail.timings.create(:user_id => ids.shuffle.first, :seconds => (rand(5000) - rand(2000)))
+  end
 end
