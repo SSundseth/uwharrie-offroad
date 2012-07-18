@@ -65,6 +65,13 @@ UwharrieOffroad::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 25,
+    :user_name => 'uwharrieoffroad@gmail.com',
+    :password => 'super-password',
+    :authentication => :login
+  }
   config.action_mailer.default_url_options = { :host => "http//:uwharrie-offroad.herokuapp.com" }
 end

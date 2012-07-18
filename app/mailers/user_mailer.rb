@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "uwharrie-offroad.com"
+  default from: "uwharrieoffroad@gmail.com"
   def password_reset(user)
     @user = user
     @new_password = SecureRandom.hex(10)
