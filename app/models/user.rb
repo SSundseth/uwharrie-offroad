@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   authenticate_by :name
 
-  attr_accessible :name, :email, :password
+  attr_accessible :name, :email, :password, :password_confirmation
 
   validates :name, :presence => true, :uniqueness => true
   validates :email, :uniqueness => true, :allow_blank => true
@@ -15,6 +15,5 @@ class User < ActiveRecord::Base
   def best_times
     timings.select('trail_id, MIN(seconds) AS min').
       group('trail_id').order('min')
-
   end
 end
