@@ -89,4 +89,13 @@ describe UsersController do
       it { should render_template(:edit) }
     end
   end
+
+  describe "DELETE #destroy" do
+    before do
+      delete :destroy, :id => user.id
+    end
+
+    it { should respond_with(:redirect) }
+    it { should redirect_to(root_url) }
+  end
 end

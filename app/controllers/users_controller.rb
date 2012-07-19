@@ -36,4 +36,10 @@ class UsersController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    User.find(params[:id]).destroy
+    self.current_user = nil
+    redirect_to root_url
+  end
 end

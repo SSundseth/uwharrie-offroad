@@ -2,6 +2,7 @@
 <%= @user.email %>
 <% if current_user == @user %>
   <%= link_to "Edit Info", edit_user_path(@user) %>
+  <%= link_to "Delete Account", user_path(@user), :method => :delete, :confirm => "Are you sure you want to delete your account?" %>
 <% end %>
 <p>
   <h2>Best Times by Trail</h2>
