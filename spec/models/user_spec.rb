@@ -8,6 +8,16 @@ describe User do
   it { should validate_uniqueness_of(:email) }
   it { should validate_presence_of(:password) }
 
+  describe "on delete" do
+    before do
+      subject.timings.create(:trail_id => 1, :seconds => 3600)
+    end
+
+    it "should delete associated timings" do
+      lambda { subject.destroy }.should change(Timing, :count).by(-1)
+    end
+  end
+
   describe "#best_times" do
     before do
       subject.timings.create(:trail_id => 1, :seconds => 3600)

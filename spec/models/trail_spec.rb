@@ -8,6 +8,15 @@ describe Trail do
   it { should validate_presence_of(:length) }
   it { should validate_presence_of(:difficulty) }
 
+  describe "on delete" do
+    before do
+      subject.timings.create(:user_id => user.id, :seconds => 3600)
+    end
+
+    it "should delete associated timings" do
+      lambda { subject.destroy }.should change(Timing, :count).by(-1)
+    end
+  end
   describe "#best_timing" do
     before do
       subject.timings.create(:user_id => user.id, :seconds => 600)
