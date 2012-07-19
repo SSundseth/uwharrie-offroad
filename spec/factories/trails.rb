@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :trail do
-    name "MyString"
-    length "MyString"
-    difficulty "MyString"
+    name "TestTrail"
+    length "5.0 miles"
+    difficulty "Legendary"
   end
 end

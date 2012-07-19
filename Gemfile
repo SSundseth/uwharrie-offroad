@@ -14,6 +14,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'shoulda', :require => false
+  gem 'simplecov', :require => false
 end
 
 group :assets do
