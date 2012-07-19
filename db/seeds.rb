@@ -15,9 +15,9 @@ Trail.create(:name => 'Dickey Bell',     :length => '3.5 miles', :difficulty => 
 
 
 # Users
-User.create(:name => 'Stef', :email => 'stefan.sundseth@viget.com', :password => 'password')
-User.create(:name => 'Rob',  :email => 'baseballrob99@gmail.com',   :password => 'password')
-User.create(:name => 'Andrew', :email => 'ahove11@yahoo.com',       :password => 'password')
+User.create(:name => 'Stef',   :email => 'stefan.sundseth@viget.com', :password => 'password')
+User.create(:name => 'Rob',    :email => 'robsemail@email.com',       :password => 'password')
+User.create(:name => 'Andrew', :email => 'andrewsemail@email.com',    :password => 'password')
 
 # Put user ids in an array
 ids = User.all(:select => :id).collect(&:id)
@@ -25,6 +25,6 @@ ids = User.all(:select => :id).collect(&:id)
 # Times
 5.times do |t|
   Trail.all.each do |trail|
-    trail.timings.create(:user_id => ids.shuffle.first, :seconds => (rand(5000) - rand(2000)))
+    trail.timings.create(:user_id => ids.shuffle.first, :seconds => (rand(3000) + 2000))
   end
 end
