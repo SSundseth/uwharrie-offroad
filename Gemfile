@@ -15,6 +15,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'shoulda', :require => false
   gem 'simplecov', :require => false
+  gem 'capybara'
 end
 
 group :assets do

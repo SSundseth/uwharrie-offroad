@@ -1,11 +1,7 @@
 <h1>Click on a Trail to see more info</h1>
-<div class="row">
-  <div class="span12">
-    <ul id="topo-map">
-      <% @trails.each do |t| %>
-        <li id=<%= "#{t.name}".downcase.gsub(/\s|\./, '_') %>><%= link_to t.name, t %></li>
-      <% end %>
-    </ul>
-      Image copyrighted by Southeast Overland LLC. All rights reserved.
-  </div>
-</div>
+  <ul id="topo-map">
+    <% @trails.each do |t| %>
+      <li id=<%= "#{t.name}".downcase.gsub(/\s|\./, '_') %>><%= link_to t.name, t %></li>
+    <% end %>
+  </ul>
+    Image copyrighted by Southeast Overland LLC. All rights reserved.
