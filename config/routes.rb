@@ -2,6 +2,7 @@ UwharrieOffroad::Application.routes.draw do
   resources :users
   resources :trails
   resources :password_resets
+  resources :timings
 
   resource :session, :only => [:new, :create, :destroy]
   resource :account, :only => [:edit, :update], :controller => :users

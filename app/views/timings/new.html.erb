@@ -1,0 +1,21 @@
+<div class="page_header">
+  <h2><span>Input a Time</span></h2>
+</div>
+
+<%= form_tag @timing do |f| %>
+  <%= simple_fields_for @timing do |form| %>
+    <%= form.association :trail, :collection => Trail.all %>
+  <% end %>
+
+  <%= label_tag "hours" %>
+  <%= number_field_tag "hours", nil, :min => 0, :class => 'span1' %>
+
+  <%= label_tag "minutes" %>
+  <%= number_field_tag "minutes", nil, :min => 0, :class => 'span1' %>
+
+  <%= label_tag "seconds" %>
+  <%= number_field_tag "seconds", nil, :min => 0, :class => 'span1' %>
+  <p>
+  <%= button_tag "Submit", :class => 'btn btn-primary' %>
+  </p>
+<% end %>

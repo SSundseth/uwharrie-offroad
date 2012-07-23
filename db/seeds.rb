@@ -25,6 +25,6 @@ ids = User.all(:select => :id).collect(&:id)
 # Times
 5.times do |t|
   Trail.all.each do |trail|
-    trail.timings.create(:user_id => ids.shuffle.first, :seconds => (rand(3000) + 2000))
+    trail.timings.create(:user_id => ids.shuffle.first, :seconds => (rand(7000) + 3600))
   end
 end

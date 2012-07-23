@@ -3,7 +3,7 @@ class Timing < ActiveRecord::Base
 
   validates :user_id, :presence => true
   validates :trail_id, :presence => true
-  validates :seconds, :presence => true
+  validates :seconds, :presence => true, :numericality => { :only_integer => true, :greater_than => 0 }
 
   belongs_to :user
   belongs_to :trail
