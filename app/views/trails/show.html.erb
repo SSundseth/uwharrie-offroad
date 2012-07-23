@@ -1,6 +1,10 @@
-<p><%= @trail.name %></p>
-<p><%= @trail.length %></p>
-<p><%= @trail.difficulty %></p>
+<div class="page_header">
+  <h2><%= @trail.name %></h2>
+</div>
+<div class="info">
+  length: <%= @trail.length %><br />
+  difficulty: <%= @trail.difficulty %>
+</div>
 <% if @trail.timings.any? %>
   <p>
   Best Time: <%= link_to @trail.best_time_user.name, @trail.best_time_user %> in

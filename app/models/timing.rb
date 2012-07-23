@@ -7,4 +7,16 @@ class Timing < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :trail
+
+  def hours
+    self.seconds / 3600
+  end
+
+  def minutes
+    (self.seconds - self.hours * 3600) / 60
+  end
+
+  def seconds_remaining
+    self.seconds - (self.hours * 3600 + self.minutes * 60)
+  end
 end
