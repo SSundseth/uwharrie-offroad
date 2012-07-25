@@ -18,7 +18,7 @@ describe SessionsController do
         post :create, :name => user.name, :password => user.password
       end
 
-      it { should redirect_to(users_url) }
+      it { should redirect_to(root_url) }
     end
 
     describe "with bad data" do

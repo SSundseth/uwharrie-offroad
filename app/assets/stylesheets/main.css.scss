@@ -1,0 +1,111 @@
+ul#topo-map {
+  list-style: none;
+  background: url(/assets/uwharrie-topo-highlights.png) no-repeat 0 0;
+  position: relative;
+  width: 100%;
+  height: 680px;
+  margin: 0;
+  padding: 0;
+}
+
+ul#topo-map li {
+  position: absolute;
+}
+
+ul#topo-map li a{
+  display: block;
+  height: 100%;
+  text-indent: -9001px;
+}
+
+ul#topo-map li a:hover {
+  background: url(/assets/uwharrie-topo-highlights.png) no-repeat 0 0;
+}
+
+ul#topo-map li#daniel a:hover {
+  background-position: -539px -685px;
+}
+
+ul#topo-map li#dickey_bell a:hover {
+  background-position: -267px -685px;
+}
+
+ul#topo-map li#rocky_mnt__loop a:hover {
+  background-position: -648px -820px;
+}
+
+ul#topo-map li#falls_dam a:hover {
+  background-position: -51px -841px;
+}
+
+ul#topo-map li#slab_pile a:hover {
+  background-position: -695px -961px;
+}
+
+ul#topo-map li#wolfden a:hover {
+  background-position: -545px -820px;
+}
+
+ul#topo-map li#dutch_john a:hover {
+  background-position: -43px -689px;
+}
+
+ul#topo-map li#saw_mill a:hover {
+  background-position: -542px -953px;
+}
+
+#daniel {
+  width: 312px;
+  height: 128px;
+  top: 193px;
+  left: 471px;
+}
+
+#dickey_bell {
+  width: 243px;
+  height: 298px;
+  top: 273px;
+  left: 342px;
+}
+
+#rocky_mnt__loop {
+  width: 181px;
+  height: 126px;
+  top: 144px;
+  left: 298px;
+}
+
+#falls_dam {
+  width: 187px;
+  height: 205px;
+  top: 361px;
+  left: 86px;
+}
+
+#slab_pile {
+  width: 125px;
+  height: 68px;
+  top: 215px;
+  left: 168px;
+}
+
+#wolfden {
+  width: 64px;
+  height: 127px;
+  top: 226px;
+  left: 116px;
+}
+
+#dutch_john {
+  width: 214px;
+  height: 140px;
+  top: 285px;
+  left: 121px;
+}
+
+#saw_mill {
+  width: 105px;
+  height: 99px;
+  top: 108px;
+  left: 227px;
+}

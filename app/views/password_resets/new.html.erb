@@ -1,0 +1,11 @@
+<div class="form-page span4 offset4">
+	<h1 class="form-title">Reset Password</h1>
+
+	<%= form_tag password_resets_path, :class => "well span3" do %>
+		<div class="field">
+			<%= label_tag :email %><br />
+			<%= text_field_tag :email %>
+		</div>
+		<%= submit_tag 'Reset', :class => "btn btn-primary" %>
+	<% end %>
+</div>

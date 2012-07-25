@@ -1,5 +1,17 @@
-<%= @user.name %>
-<%= @user.email %>
-<% if current_user == @user %>
-  <%= link_to "Edit Info", edit_user_path(@user) %>
-<% end %>
+<div class="page_header">
+  <h2><span><%= @user.name %></h2></span>
+</div>
+<div class="info">
+  email: <%= @user.email %>
+</div>
+<p>
+  <h4>Best Times by Trail</h4>
+    <% @user.best_times.each do |t| %>
+      <%= link_to t.trail.name, t.trail %>:
+      <%= Time.at(t.min.to_i).utc.strftime("%H:%M:%S") %>
+      <% if t.min.to_i == t.trail.best_timing.seconds %>
+        <span style="color:red">Best Overall!</span>
+      <% end %>
+      <br />
+    <% end %>
+</p>
