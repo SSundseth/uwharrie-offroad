@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :timing do
-    user_id 1
-    trail_id 1
-    duration "2012-07-16 15:16:36"
+    user { FactoryGirl.create(:user) }
+    trail { FactoryGirl.create(:trail) }
+    seconds rand(5000)
   end
 end
