@@ -12,5 +12,6 @@ UwharrieOffroad::Application.routes.draw do
   match 'logout'         => 'sessions#destroy'
   match 'login'          => 'sessions#new'
   match 'about'          => 'pages#about'
+  match 'location'       => 'pages#location'
   root :to => "trails#index"
 end
