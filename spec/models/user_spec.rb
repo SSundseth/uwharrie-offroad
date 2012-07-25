@@ -8,7 +8,7 @@ describe User do
   it { should validate_uniqueness_of(:email) }
   it { should validate_presence_of(:password) }
 
-  describe "on delete" do
+  describe "being deleted" do
     before do
       subject.timings.create(:trail_id => 1, :seconds => 3600)
     end

@@ -8,7 +8,7 @@ describe Trail do
   it { should validate_presence_of(:length) }
   it { should validate_presence_of(:difficulty) }
 
-  describe "on delete" do
+  describe "being deleted" do
     before do
       subject.timings.create(:user_id => user.id, :seconds => 3600)
     end
