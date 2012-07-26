@@ -3,6 +3,9 @@ UwharrieOffroad::Application.routes.draw do
   resources :trails do
     resources :comments
   end
+  resources :comments do
+    resources :comments
+  end
   resources :password_resets
   resources :timings
 

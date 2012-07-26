@@ -1,0 +1,18 @@
+<% for comment in object %>
+  <div class="info">
+    <% if comment.user %>
+      <%= comment.user.name %>
+    <% else %>
+      <span style="color:red">**account deleted</span>
+    <% end %>
+
+    <%= time_ago_in_words(comment.created_at) %> ago
+    <% if logged_in? %>
+      | <%= link_to "reply", trail_comment_path(comment.get_trail, comment) %>
+      <% if comment.user == current_user && !comment.deleted %>
+        | <%= link_to "edit", edit_comment_path(comment) %>
+        | <%= link_to "delete", trail_comment_path(comment.get_trail, comment), :method => :delete, :data => { :confirm => "Are you sure you want to delete this comment?" } %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

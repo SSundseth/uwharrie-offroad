@@ -1,0 +1,6 @@
+<div class="showcomment">
+  <%= render "comments/info", :object => [@comment] %>
+  <%= @comment.body %>
+</div>
+<%= render "comments/form" %>
+<%= button_to "Cancel", trail_path(@comment.get_trail), :method => :get, :class => "btn btn-danger" %>

@@ -1,0 +1,15 @@
+<% for comment in object %>
+  <div class="row">
+    <div class="span10">
+      <%= render "comments/info", :object => [comment] %>
+      <% if comment.deleted %>
+        <p><span style="color:grey">Comment has been deleted by user</span></p>
+      <% else %>
+        <p><%= comment.body %></p>
+      <% end %>
+      <div class="offset1">
+        <%= render "comments/comment", :object => comment.comments.newest_first %>
+      </div>
+    </div>
+  </div>
+<% end %>

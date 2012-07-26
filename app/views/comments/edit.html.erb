@@ -1,0 +1,6 @@
+<%= form_tag @comment, :method => :put do %>
+  <%= text_area_tag "body" %>
+  <p>
+  <%= button_tag "Edit", :class => 'btn btn-primary' %>
+  </p>
+<% end %>

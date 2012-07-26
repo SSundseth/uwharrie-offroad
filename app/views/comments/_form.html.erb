@@ -1,0 +1,6 @@
+<%= form_for [@commentable, Comment.new] do |f| %>
+  <%= f.text_area :body, :size => "20x5" %>
+  <p>
+  <%= f.submit "Post Comment", :class => "btn btn-primary" %>
+  </p>
+<% end %>

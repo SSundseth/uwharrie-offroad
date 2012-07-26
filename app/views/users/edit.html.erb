@@ -9,9 +9,10 @@
   <% end %>
 
   <h2><span>Click Here to Delete Your Account</span></h2>
-  <button class="btn btn-danger">
-    <%= link_to "Delete Account", user_path(@user), :method => :delete, :data => { :confirm => "Are you sure you want to delete your account?" } %>
-  </button>
+  <%= button_to "Delete Account", user_path(@user),
+    :method => :delete,
+    :data => { :confirm => "Are you sure you want to delete your account?" },
+    :class => "btn btn-danger" %>
 <% else %>
   You can't edit someone else's account lol!
 <% end %>

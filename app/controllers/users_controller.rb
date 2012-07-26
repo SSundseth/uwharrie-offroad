@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_filter :store_return_to
+
   def new
     @user = User.new
   end
