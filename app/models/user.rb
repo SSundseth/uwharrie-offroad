@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :if => :password_required?
 
   has_many :timings, :dependent => :destroy
+  has_many :comments
 
   def best_times
     timings.select('trail_id, MIN(seconds) AS min').
