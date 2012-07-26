@@ -1,6 +1,8 @@
 UwharrieOffroad::Application.routes.draw do
   resources :users
-  resources :trails
+  resources :trails do
+    resources :comments
+  end
   resources :password_resets
   resources :timings
 
