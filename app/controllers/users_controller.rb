@@ -27,11 +27,19 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update_attributes(params[:user])
-      redirect_to current_user, :notice => "Account Updated"
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Account Updated"
+      redirect_to @user
     else
-      flash.now[:error] = "Account not Updated"
+      flash[:error] = "Account not Updated"
       render :edit
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    self.current_user = nil
+    redirect_to root_url
   end
 end

@@ -1,5 +1,17 @@
-<%= simple_form_for current_user, :url => account_path do |f| %>
-  <%= f.input :email, :input_html => { :class => "span4" } %>
-  <%= f.input :password, :input_html => { :class => "span4" } %>
-  <%= f.submit :class => 'btn btn-primary' %>
+<% if @user == current_user %>
+  <div class="page_header">
+    <h2><span>Edit Your Account</span></h2>
+  </div>
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.submit "Edit", :class => "btn btn-primary" %>
+  <% end %>
+
+  <h2><span>Click Here to Delete Your Account</span></h2>
+  <button class="btn btn-danger">
+    <%= link_to "Delete Account", user_path(@user), :method => :delete, :data => { :confirm => "Are you sure you want to delete your account?" } %>
+  </button>
+<% else %>
+  You can't edit someone else's account lol!
 <% end %>
