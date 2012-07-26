@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def new
   end
 
@@ -8,7 +7,8 @@ class SessionsController < ApplicationController
 
     if user
       self.current_user = user
-      redirect_to root_url
+      flash[:notice] = "Login successful"
+      redirect_to session[:return_to]
     else
       flash[:error] = 'Invalid username or password'
       render :new
@@ -17,6 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     self.current_user = nil
-    redirect_to root_url
+    flash[:notice] = "You have logged out"
+    redirect_to session[:return_to]
   end
 end

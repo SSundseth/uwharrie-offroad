@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   include Commentable
-  attr_accessible :body, :commentable_id, :commentable_type
+  attr_accessible :body, :commentable_id, :commentable_type, :user_id, :deleted
 
   validates :commentable, :presence => true
   validates :body, :presence => true
@@ -9,7 +9,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to :user
 
-  scope :newest_first, order('created_at ASC')
+  scope :newest_first, :order => "created_at DESC"
 
   def get_trail
     if commentable.is_a? Trail
