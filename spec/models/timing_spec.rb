@@ -11,7 +11,7 @@ describe Timing do
 
   describe "hours/minutes/seconds_remaining" do
     it "should sum up to seconds" do
-      (subject.hours + subject.minutes + subject.seconds_remaining).should == subject.seconds
+      (subject.hours*3600 + subject.minutes*60 + subject.seconds_remaining).should == subject.seconds
     end
   end
 end

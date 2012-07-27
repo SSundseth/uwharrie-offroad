@@ -11,7 +11,7 @@ describe User do
   describe "being created" do
     it "should update the User count" do
       lambda {
-        Factory(:user)
+        FactoryGirl.create(:user)
       }.should change(User, :count).by(1)
     end
   end

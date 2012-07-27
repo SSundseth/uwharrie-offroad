@@ -4,6 +4,10 @@ describe "User" do
 
   let(:user) { FactoryGirl.create(:user, :name => 'TestName', :password => 'password') }
 
+  before do
+    visit root_url
+  end
+
   context "signing up" do
     before do
       visit "/signup"
@@ -31,7 +35,7 @@ describe "User" do
   context "logging in and out" do
     before do
       FactoryGirl.create(:user)
-      visit "/login"
+      visit login_url
     end
 
     it "is not validated with improper info" do
@@ -86,7 +90,7 @@ describe "User" do
     end
 
     it "removes user from the database" do
-      expect { click_link "Delete Account" }.to change { User.count }.by(-1)
+      expect { click_button "Delete Account" }.to change { User.count }.by(-1)
     end
   end
 end
