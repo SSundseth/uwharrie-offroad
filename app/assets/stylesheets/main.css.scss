@@ -1,3 +1,7 @@
+div {
+  word-break: break-all;
+  word-wrap: break-word;
+}
 ul#topo-map {
   list-style: none;
   background: url(/assets/uwharrie-topo-highlights.png) no-repeat 0 0;
