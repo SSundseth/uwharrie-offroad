@@ -30,8 +30,9 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
-    if params[:body]
-      @comment.update_attributes(:body => "#{@comment.body} \n EDIT: #{params[:body]}")
+    if !params[:body].blank?
+      flash[:notice] = "Comment Edited"
+      @comment.update_attributes(:body => "#{@comment.body}\nEDIT: #{params[:body]}")
       redirect_to @comment.get_trail
     else
       flash[:error] = "Edit cannot be blank"

@@ -50,7 +50,7 @@ module RSpec::Rails
 end
 
 def log_in_helper(user)
-  visit "/login"
+  visit login_url
   fill_in "name", :with => user.name
   fill_in "password", :with => user.password
   click_button "Sign In"
