@@ -58,10 +58,9 @@
       }
     }
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showStartPos, showError, {enableHighAccuracy:true});
-      navigator.geolocation.watchPosition(showCurrentPos, showError, {enableHighAccuracy:true});
-    }
+    navigator.geolocation.getCurrentPosition(showStartPos, showError, {enableHighAccuracy:true});
+    navigator.geolocation.watchPosition(showCurrentPos, showError, {enableHighAccuracy:true});
+
   }
 </script>
 <div id="tripmeter">
