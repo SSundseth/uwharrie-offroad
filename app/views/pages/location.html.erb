@@ -1,6 +1,5 @@
 <script type="text/javascript">
   var count = 0;
-  var int = self.setInterval("clock()",1000);
 
   function clock() {
     count++;
@@ -61,7 +60,7 @@
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showStartPos, showError);
-        navigator.geolocation.watchPosition(showCurrentPos, showError, {maximumAge:0});
+        navigator.geolocation.watchPosition(showCurrentPos, showError);
     }
   }
 </script>
@@ -83,6 +82,8 @@
     <span id="atHome">???</span>
   </p>
   <p>
+  <button onclick="var int=self.setInterval('clock()', 1000)">Begin</button><br />
+  <button onclick="count = 0">Reset</button><br />
     Time: <span id="intTime">???</span>
   </p>
 </div>
