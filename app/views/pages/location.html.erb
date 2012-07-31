@@ -1,9 +1,10 @@
 <script type="text/javascript">
-  var count = 0;
+  var elapsed = '0';
 
   function clock() {
-    count++;
-    document.getElementById("intTime").innerHTML=count;
+    var time = new Date().getTime() - start;
+    elapsed = Math.floor(time / 1000);
+    document.getElementById("intTime").innerHTML = elapsed
   }
 
   window.onload = function() {
@@ -12,12 +13,6 @@
     var homeLon = -78.99481;
     var vigLat  = 35.997105;
     var vigLon  = -78.899893;
-
-    function showStartPos(position) {
-      startPos = position;
-      document.getElementById("startLat").innerHTML = startPos.coords.latitude;
-      document.getElementById("startLon").innerHTML = startPos.coords.longitude;
-    }
 
     function showError(error) {
       alert("Error occurred. Error code: " + error.code);
@@ -51,23 +46,20 @@
       }
       if (isInArea(position, homeLat, homeLon)) {
         document.getElementById("atHome").innerHTML = "YES!";
-        window.clearInterval(int);
+        clearInterval(window.timer);
       }
       else {
         document.getElementById("atHome").innerHTML = "NO!";
       }
     }
 
-    navigator.geolocation.getCurrentPosition(showStartPos, showError, {enableHighAccuracy:true});
-    navigator.geolocation.watchPosition(showCurrentPos, showError, {enableHighAccuracy:true});
-
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(showCurrentPos, showError, {enableHighAccuracy:true});
+    }
+    else { document.write("Your device cannot be located") }
   }
 </script>
 <div id="tripmeter">
-  <p>
-    Starting Location (lat, lon):<br/>
-    <span id="startLat">???</span>&deg;, <span id="startLon">???</span>&deg;
-  </p>
   <p>
     Current Location (lat, lon):<br/>
     <span id="currentLat">???</span>&deg;, <span id="currentLon">???</span>&deg;
@@ -81,8 +73,14 @@
     <span id="atHome">???</span>
   </p>
   <p>
-  <button onclick="var int=self.setInterval('clock()', 1000)">Begin</button><br />
-  <button onclick="count = 0">Reset</button><br />
+  <button id="startBut" onclick="start = new Date().getTime();
+    window.timer=setInterval('clock()', 100);
+    this.disabled = true">
+    Begin</button><br />
+  <button onclick="start = new Date().getTime()">Reset</button><br />
+  <button onclick="clearInterval(window.timer);
+    document.getElementById('startBut').disabled = false">
+    Stop</button><br />
     Time: <span id="intTime">???</span>
   </p>
 </div>
