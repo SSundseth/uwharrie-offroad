@@ -1,5 +1,9 @@
 <script type="text/javascript">
   var elapsed = '0';
+  var homeLat = 35.974551;
+  var homeLon = -78.99481;
+  var vigLat  = 35.997105;
+  var vigLon  = -78.899893;
 
   function clock() {
     var time = new Date().getTime() - start;
@@ -7,51 +11,49 @@
     document.getElementById("intTime").innerHTML = elapsed
   }
 
+  function isInArea(position, cenLat, cenLon) {
+    var posLat = position.coords.latitude;
+    var posLon = position.coords.longitude;
+
+    var squareDist = Math.pow(cenLat - posLat, 2) + Math.pow(cenLon - posLon, 2);
+    return squareDist <= Math.pow(0.0005, 2);
+  }
+
+  function showError(error) {
+    alert("Error occurred. Error code: " + error.code);
+    // error.code can be:
+    //   0: unknown error
+    //   1: permission denied
+    //   2: position unavailable (error response from locaton provider)
+    //   3: timed out
+  }
+
+  function showCurrentPos(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+
+    document.getElementById("currentLat").innerHTML = lat;
+    document.getElementById("currentLon").innerHTML = lon;
+
+    if (isInArea(position, vigLat, vigLon)) {
+      document.getElementById("atViget").innerHTML = "YES!";
+      document.getElementById("startBut").onclick = function() { start = new Date().getTime(); window.timer = setInterval('clock()', 100); };
+      document.getElementById("startBut").innerHTML = "Begin timing";
+    }
+    else {
+      document.getElementById("atViget").innerHTML = "NO!";
+    }
+
+    if (isInArea(position, homeLat, homeLon)) {
+      document.getElementById("atHome").innerHTML = "YES!";
+      clearInterval(window.timer);
+    }
+    else {
+      document.getElementById("atHome").innerHTML = "NO!";
+    }
+  }
+
   window.onload = function() {
-    var startPos;
-    var homeLat = 35.974551;
-    var homeLon = -78.99481;
-    var vigLat  = 35.997105;
-    var vigLon  = -78.899893;
-
-    function showError(error) {
-      alert("Error occurred. Error code: " + error.code);
-      // error.code can be:
-      //   0: unknown error
-      //   1: permission denied
-      //   2: position unavailable (error response from locaton provider)
-      //   3: timed out
-    }
-
-    function isInArea(position, cenLat, cenLon) {
-      var posLat = position.coords.latitude;
-      var posLon = position.coords.longitude;
-
-      var squareDist = Math.pow(cenLat - posLat, 2) + Math.pow(cenLon - posLon, 2);
-      return squareDist <= Math.pow(0.0005, 2);
-    }
-
-    function showCurrentPos(position) {
-      var lat = position.coords.latitude;
-      var lon = position.coords.longitude;
-
-      document.getElementById("currentLat").innerHTML = lat;
-      document.getElementById("currentLon").innerHTML = lon;
-
-      if (isInArea(position, vigLat, vigLon)) {
-        document.getElementById("atViget").innerHTML = "YES!";
-      }
-      else {
-        document.getElementById("atViget").innerHTML = "NO!";
-      }
-      if (isInArea(position, homeLat, homeLon)) {
-        document.getElementById("atHome").innerHTML = "YES!";
-        clearInterval(window.timer);
-      }
-      else {
-        document.getElementById("atHome").innerHTML = "NO!";
-      }
-    }
 
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(showCurrentPos, showError, {enableHighAccuracy:true});
@@ -59,6 +61,7 @@
     else { document.write("Your device cannot be located") }
   }
 </script>
+
 <div id="tripmeter">
   <p>
     Current Location (lat, lon):<br/>
@@ -73,14 +76,11 @@
     <span id="atHome">???</span>
   </p>
   <p>
-  <button id="startBut" onclick="start = new Date().getTime();
-    window.timer=setInterval('clock()', 100);
-    this.disabled = true">
-    Begin</button><br />
-  <button onclick="start = new Date().getTime()">Reset</button><br />
-  <button onclick="clearInterval(window.timer);
-    document.getElementById('startBut').disabled = false">
-    Stop</button><br />
+    <button id="startBut"></button>
+    <button id="resetBut" onclick="start = new Date().getTime()">Reset</button>
+    <button id="stopBut" onclick="clearInterval(window.timer);
+                         document.getElementById('startBut').disabled = false">Stop</button><br />
+
     Time: <span id="intTime">???</span>
   </p>
 </div>
