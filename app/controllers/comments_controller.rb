@@ -3,12 +3,13 @@ class CommentsController < ApplicationController
     @commentable = find_object
     @comment = @commentable.comments.build(params[:comment].merge(:user_id => current_user.id))
 
-    if @comment.save
-      flash[:notice] = "Comment Saved"
-      redirect_to @comment.get_trail
-    else
-      flash[:error] = "Comment cannot be blank"
-      redirect_to @comment.get_trail
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @comment.get_trail }
+      else
+        flash[:error] = "Comment cannot be blank"
+        format.html { redirect_to @comment.get_trail }
+      end
     end
   end
 
@@ -31,7 +32,6 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if !params[:body].blank?
-      flash[:notice] = "Comment Edited"
       @comment.update_attributes(:body => "#{@comment.body}\nEDIT: #{params[:body]}")
       redirect_to @comment.get_trail
     else

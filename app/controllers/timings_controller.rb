@@ -4,13 +4,10 @@ class TimingsController < ApplicationController
   end
 
   def create
-    @trail = Trail.find(params[:timing][:trail_id])
-    total = params[:hours].to_i*3600 + params[:minutes].to_i*60 + params[:seconds].to_i
-    @timing = @trail.timings.build(:user_id => current_user.id, :seconds => total)
-
+    @timing = Timing.new(params[:timing])
     if @timing.save
       flash[:notice] = "Your time has been saved"
-      redirect_to current_user
+      redirect_to root_url
     else
       flash[:error] = "Time not saved"
       render :new

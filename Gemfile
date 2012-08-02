@@ -9,6 +9,7 @@ gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-boots
 gem 'simple_form'
 gem 'thin'
 gem 'heroku'
+gem 'gon'
 
 group :test, :development do
   gem 'rspec-rails'

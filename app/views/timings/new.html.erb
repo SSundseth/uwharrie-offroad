@@ -2,20 +2,29 @@
   <h2><span>Input a Time</span></h2>
 </div>
 
-<%= form_tag @timing do |f| %>
-  <%= simple_fields_for @timing do |form| %>
-    <%= form.association :trail, :collection => Trail.all %>
-  <% end %>
-
-  <%= label_tag "hours" %>
-  <%= number_field_tag "hours", nil, :min => 0, :class => 'span1' %>
-
-  <%= label_tag "minutes" %>
-  <%= number_field_tag "minutes", nil, :min => 0, :class => 'span1' %>
-
-  <%= label_tag "seconds" %>
-  <%= number_field_tag "seconds", nil, :min => 0, :class => 'span1' %>
+<%= content_tag "div", id: 'tripmeter', data: {
+  trails: Trail.all,
+  locations: Location.all,
+  user: current_user
+  } do %>
   <p>
-  <%= button_tag "Submit", :class => 'btn btn-primary' %>
+    Current Location (lat, lon):<br/>
+    <span id="currentLat">???</span>&deg;, <span id="currentLon">???</span>&deg;
+  </p>
+  <p>
+    Are you at Viget South?<br/>
+    <span id="atViget">???</span>
+  </p>
+  <p>
+    Are you at Stef's House?<br />
+    <span id="atHome">???</span>
+  </p>
+  <p>
+  <button id="startButton"></button>
+    <button id="stopButton" onclick="clearInterval(window.timer);
+      document.getElementById('startButton').disabled = false;
+      document.getElementById('timer').innerHTML = 0">Reset</button><br />
+
+    Time: <span id="timer">???</span>
   </p>
 <% end %>

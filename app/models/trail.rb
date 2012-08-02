@@ -7,6 +7,7 @@ class Trail < ActiveRecord::Base
   validates :difficulty, :presence => true
 
   has_many :timings, :dependent => :destroy
+  has_many :locations, :dependent => :destroy
 
   def best_timing
     timings.order('seconds ASC').first
