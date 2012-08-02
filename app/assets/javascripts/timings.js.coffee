@@ -48,7 +48,7 @@ showCurrentPos = (position) ->
     $.ajax '/timings',
         type: 'POST'
         dataType: 'html'
-        data: {timing: {user_id: window.user, trail_id: 90, seconds: total}}
+        data: {timing: {user_id: window.user.id, trail_id: window.trails[8].id, seconds: total}}
         success: $('body').append "Successful AJAX call: #{data}"
   else
     document.getElementById("atHome").innerHTML = "NO!"
