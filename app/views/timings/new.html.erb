@@ -12,19 +12,11 @@
     <span id="currentLat">???</span>&deg;, <span id="currentLon">???</span>&deg;
   </p>
   <p>
-    Are you at Viget South?<br/>
-    <span id="atViget">???</span>
+    Trail Name: <span id="trailName"></span>
   </p>
-  <p>
-    Are you at Stef's House?<br />
-    <span id="atHome">???</span>
-  </p>
-  <p>
   <button id="startButton"></button>
-    <button id="stopButton" onclick="clearInterval(window.timer);
-      document.getElementById('startButton').disabled = false;
-      document.getElementById('timer').innerHTML = 0">Reset</button><br />
-
+  <p>
     Time: <span id="timer">???</span>
   </p>
+  <button id="submitButton" style="display: none"></button>
 <% end %>
