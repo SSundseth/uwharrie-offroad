@@ -13,6 +13,8 @@ Trail.create(:name => 'Rocky Mnt. Loop', :length => '2.8 miles', :difficulty => 
 Trail.create(:name => 'Saw Mill',        :length => '1.6 miles', :difficulty => 'Moderate')
 Trail.create(:name => 'Falls Dam',       :length => '2.7 miles', :difficulty => 'Easy')
 Trail.create(:name => 'Dickey Bell',     :length => '2.9 miles', :difficulty => 'Moderate')
+Trail.create(:name => 'Home to Viget',   :length => '7.0 miles', :difficulty => 'Supa EZ')
+Trail.create(:name => 'Boulder trail',   :length => 'over 9000', :difficulty => 'idk')
 
 # Locations
 Trail.all.each do |trail|
@@ -43,6 +45,12 @@ Trail.all.each do |trail|
     trail.locations.create(:latitude => 35.411543, :longitude => -80.071535)
     trail.locations.create(:latitude => 35.417349, :longitude => -80.055099)
     trail.locations.create(:latitude => 35.425532, :longitude => -80.054755)
+  when "Home to Viget"
+    trail.locations.create(:latitude => 35.974551, :longitude => -78.994810)
+    trail.locations.create(:latitude => 35.997105, :longitude => -78.899893)
+  when "Boulder trail"
+    trail.locations.create(:latitude => 40.016847, :longitude => -105.277305)
+    trail.locations.create(:latitude => 40.004977, :longitude => -105.250634)
   else puts "wrong trail name"
   end
 end

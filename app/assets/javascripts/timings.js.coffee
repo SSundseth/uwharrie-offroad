@@ -3,10 +3,58 @@ jQuery ->
   window.locations = $('#tripmeter').data('locations')
   window.user = $('#tripmeter').data('user')
 
-clock = (start) ->
-  time = new Date().getTime() - start
-  elapsed = Math.floor(time / 1000)
-  document.getElementById('timer').innerHTML = elapsed
+window.onload = ->
+
+  if navigator.geolocation
+    navigator.geolocation.watchPosition showCurrentPos, showError,
+      enableHighAccuracy: true
+  else
+    document.write "Your device cannot be located"
+
+showCurrentPos = (position) ->
+  lat = position.coords.latitude
+  lon = position.coords.longitude
+  document.getElementById("currentLat").innerHTML = lat
+  document.getElementById("currentLon").innerHTML = lon
+
+  for trail in window.trails
+    if atTrail(position, trail)
+      timerStart(position, trail)
+
+timerStart = (position, trail) ->
+  window.trail = trail
+  document.getElementById("trailName").innerHTML = trail.name
+  startButton = document.getElementById("startButton")
+  startButton.onclick = ->
+    start = new Date().getTime()
+    window.timer = setInterval ->
+                     clock(start)
+                  , 100
+    this.disabled = true
+  startButton.innerHTML = "Begin timing"
+
+  if isInArea(position, window.endpoint[0], window.endpoint[1])
+    clearInterval(window.timer)
+    alert "you have reached the finish"
+    subButton = document.getElementById('submitButton')
+    subButton.style.display = block
+    subButton.innerHTML = "Submit Your Time: #{window.elapsed} seconds!"
+    subButton.onclick = ->
+      $.post(
+        "/timings"
+        timing: { user_id: window.user.id, trail_id: window.trail.id, seconds: window.elapsed }
+        success: alert 'hooray for ajax!'
+      )
+
+
+atTrail = (position, trail) ->
+  trailLocs = ([loc.latitude, loc.longitude] for loc in window.locations when loc.trail_id is trail.id)
+  if isInArea(position, trailLocs[0][0], trailLocs[0][1])
+    window.endpoint = trailLocs[1]
+  else if isInArea(position, trailLocs[1][0], trailLocs[1][1])
+    window.endpoint = trailLocs[0]
+  else
+    false
 
 isInArea = (position, cenLat, cenLon) ->
   posLat = position.coords.latitude
@@ -14,6 +62,10 @@ isInArea = (position, cenLat, cenLon) ->
   squareDist = Math.pow(cenLat - posLat, 2) + Math.pow(cenLon - posLon, 2)
   squareDist <= Math.pow(0.0005, 2)
 
+clock = (start) ->
+  time = new Date().getTime() - start
+  window.elapsed = Math.floor(time / 1000)
+  document.getElementById('timer').innerHTML = window.elapsed
 
 showError = (error) ->
   alert "Error occurred. Error code: " + error.code
@@ -22,46 +74,3 @@ showError = (error) ->
   #   1: permission denied
   #   2: position unavailable (error response from locaton provider)
   #   3: timed out
-
-showCurrentPos = (position) ->
-  lat = position.coords.latitude
-  lon = position.coords.longitude
-  document.getElementById("currentLat").innerHTML = lat
-  document.getElementById("currentLon").innerHTML = lon
-
-  if isInArea(position, vigLat, vigLon)
-    document.getElementById("atViget").innerHTML = "YES!"
-    document.getElementById("startButton").onclick = ->
-      start = new Date().getTime()
-      window.timer = setInterval ->
-                       clock(start)
-                    , 100
-      this.disabled = true
-    document.getElementById("startButton").innerHTML = "Begin timing"
-  else
-    document.getElementById("atViget").innerHTML = "NO!"
-
-  if isInArea(position, homeLat, homeLon)
-    document.getElementById("atHome").innerHTML = "YES!"
-    clearInterval window.timer
-    total = new Date().getTime() - start
-    $.ajax '/timings',
-        type: 'POST'
-        dataType: 'html'
-        data: {timing: {user_id: window.user, trail_id: 90, seconds: total}}
-        success: $('body').append "Successful AJAX call: #{data}"
-  else
-    document.getElementById("atHome").innerHTML = "NO!"
-
-homeLat = 35.974551
-homeLon = -78.99481
-vigLat = 35.997105
-vigLon = -78.899893
-
-window.onload = ->
-  if navigator.geolocation
-    navigator.geolocation.watchPosition showCurrentPos, showError,
-      enableHighAccuracy: true
-
-  else
-    document.write "Your device cannot be located"
