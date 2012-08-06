@@ -5,10 +5,9 @@ jQuery ->
   window.user = $('#tripmeter').data('user')
 
 window.onload = ->
-
   if navigator.geolocation
-    navigator.geolocation.watchPosition showCurrentPos, showError,
-      enableHighAccuracy: true
+    navigator.geolocation.getCurrentPosition setTrail, showError, enableHighAccuracy: true
+    navigator.geolocation.watchPosition showCurrentPos, showError, enableHighAccuracy: true
   else
     document.write "Your device cannot be located"
 
@@ -18,22 +17,24 @@ showCurrentPos = (position) ->
   document.getElementById("currentLat").innerHTML = lat
   document.getElementById("currentLon").innerHTML = lon
 
-  for trail in window.trails
-    if atTrail(position, trail)
-      timerStart(position, trail)
-
   if isInArea(position, window.endpoint[0], window.endpoint[1])
     clearInterval(window.timer)
-    alert "you have reached the finish"
     subButton = document.getElementById('submitButton')
-    subButton.style.display = block
-    subButton.innerHTML = "Submit Your Time: #{window.elapsed} seconds!"
+    subButton.style.display = "block"
+    subButton.innerHTML = "Submit Your Time!"
     subButton.onclick = ->
       $.post(
         "/timings"
         timing: { user_id: window.user.id, trail_id: window.trail.id, seconds: window.elapsed }
         success: alert 'hooray for ajax!'
       )
+      true
+    true
+
+setTrail = (position) ->
+  for trail in window.trails
+    if atTrail(position, trail)
+      timerStart(position, trail)
 
 timerStart = (position, trail) ->
   window.trail = trail
