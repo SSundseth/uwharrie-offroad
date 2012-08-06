@@ -21,18 +21,6 @@ showCurrentPos = (position) ->
     if atTrail(position, trail)
       timerStart(position, trail)
 
-timerStart = (position, trail) ->
-  window.trail = trail
-  document.getElementById("trailName").innerHTML = trail.name
-  startButton = document.getElementById("startButton")
-  startButton.onclick = ->
-    start = new Date().getTime()
-    window.timer = setInterval ->
-                     clock(start)
-                  , 100
-    this.disabled = true
-  startButton.innerHTML = "Begin timing"
-
   if isInArea(position, window.endpoint[0], window.endpoint[1])
     clearInterval(window.timer)
     alert "you have reached the finish"
@@ -45,6 +33,18 @@ timerStart = (position, trail) ->
         timing: { user_id: window.user.id, trail_id: window.trail.id, seconds: window.elapsed }
         success: alert 'hooray for ajax!'
       )
+
+timerStart = (position, trail) ->
+  window.trail = trail
+  document.getElementById("trailName").innerHTML = trail.name
+  startButton = document.getElementById("startButton")
+  startButton.onclick = ->
+    start = new Date().getTime()
+    window.timer = setInterval ->
+                     clock(start)
+                  , 100
+    this.disabled = true
+  startButton.innerHTML = "Begin timing"
 
 
 atTrail = (position, trail) ->
