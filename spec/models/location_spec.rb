@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Location do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_presence_of(:trail) }
+  it { should validate_presence_of(:latitude) }
+  it { should validate_presence_of(:longitude) }
 end

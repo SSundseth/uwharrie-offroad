@@ -6,7 +6,7 @@
         <% if comment.deleted %>
           <p><span style="color:grey">Comment has been deleted by user</span></p>
         <% else %>
-          <p><%= simple_format h(comment.body) %></p>
+          <%= simple_format h(comment.body) %>
         <% end %>
       </div>
       <div class="children">

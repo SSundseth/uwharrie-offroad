@@ -1,6 +1,5 @@
 # Delete all the things
 Trail.destroy_all
-User.destroy_all
 Timing.destroy_all
 Comment.destroy_all
 

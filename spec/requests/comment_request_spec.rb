@@ -28,7 +28,6 @@ describe "Comments" do
           click_button "Post Comment"
         }.should change(Comment, :count).by(1)
 
-        page.should have_content "Comment Saved"
         page.should have_content "this is comment text"
         current_path.should == trail_path(trail)
       end
@@ -83,7 +82,6 @@ describe "Comments" do
         fill_in "body", :with => "this is an edit"
         click_button "Edit"
 
-        page.should have_content "Comment Edited"
         page.should have_content "EDIT: this is an edit"
         current_path.should == trail_path(trail)
       end

@@ -18,23 +18,12 @@ describe User do
 
   describe "being deleted" do
     before do
-      subject.timings.create(:trail_id => 1, :seconds => 3600)
+      subject.timings.create(:trail_id => FactoryGirl.create(:trail).id, :seconds => 3600)
     end
-
     it "should delete associated timings" do
       lambda {
         subject.destroy
       }.should change(Timing, :count).by(-1)
-    end
-  end
-
-  describe "#best_times" do
-    before do
-      subject.timings.create(:trail_id => 1, :seconds => 3600)
-    end
-
-    it "should return timings" do
-      subject.best_times.first.trail_id.should == 1
     end
   end
 end
