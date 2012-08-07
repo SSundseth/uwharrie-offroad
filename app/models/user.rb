@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     timings.select('trail_id, MIN(seconds) AS min').
       group('trail_id').order('trail_id ASC')
   end
+
+  def recent_times
+    timings.order('created_at DESC').limit(5)
+  end
 end

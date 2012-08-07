@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :store_return_to
+  before_filter :store_return_to, :except => [:new, :create]
 
   def new
     @user = User.new
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_name(params[:name])
   end
 
   def update
