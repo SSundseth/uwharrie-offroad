@@ -6,7 +6,9 @@
   trails: Trail.all,
   locations: Location.all,
   user: current_user
-  } do %>
+} do %>
+  <p>
+  <button id="locationBegin">Click here when GPS is active</button>
   <p>
     Current Location (lat, lon):<br/>
     <span id="currentLat">???</span>&deg;, <span id="currentLon">???</span>&deg;
