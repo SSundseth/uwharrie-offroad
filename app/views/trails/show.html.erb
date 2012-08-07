@@ -1,10 +1,11 @@
 <div class="page_header">
-  <h2><%= @trail.name %></h2>
+  <h1><%= @trail.name %></h1>
 </div>
 <div class="stats">
   length: <%= @trail.length %><br />
   difficulty: <%= @trail.difficulty %>
 </div>
+
 <% if @trail.timings.any? %>
   <p>
   Best Time: <%= link_to @trail.best_time_user.name, "/user/#{@trail.best_time_user.name}" %> in
