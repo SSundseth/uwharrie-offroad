@@ -8,12 +8,12 @@ window.onload = ->
   if navigator.geolocation
     document.getElementById("locationBegin").onclick = ->
       navigator.geolocation.getCurrentPosition setTrail, showError, enableHighAccuracy: true
-      navigator.geolocation.watchPosition showCurrentPos, showError, enableHighAccuracy: true
       this.disabled = true
+    navigator.geolocation.watchPosition watchPos, showError, enableHighAccuracy: true
   else
     document.write "Your device cannot be located"
 
-showCurrentPos = (position) ->
+watchPos = (position) ->
   lat = position.coords.latitude
   lon = position.coords.longitude
   document.getElementById("currentLat").innerHTML = lat
