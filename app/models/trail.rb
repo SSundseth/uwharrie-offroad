@@ -1,6 +1,6 @@
 class Trail < ActiveRecord::Base
   include Commentable
-  attr_accessible :difficulty, :length, :name
+  attr_accessible :difficulty, :length, :name, :info
 
   validates :name, :presence => true
   validates :length, :presence => true
