@@ -7,16 +7,14 @@
 </div>
 <% if @trail.timings.any? %>
   <p>
-  Best Time: <%= link_to @trail.best_time_user.name, @trail.best_time_user %> in
+  Best Time: <%= link_to @trail.best_time_user.name, "/user/#{@trail.best_time_user.name}" %> in
   <%= Time.at(@trail.best_timing.seconds).utc.strftime("%H:%M:%S") %>
   </p>
 <% end %>
 
-
 <p>
   <%= @trail.info %>
 </p>
-
 
 <% if logged_in? %>
   <h3>Add a Comment</h3>

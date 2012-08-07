@@ -8,6 +8,7 @@ window.onload = ->
   if navigator.geolocation
     document.getElementById("locationBegin").onclick = ->
       navigator.geolocation.getCurrentPosition setTrail, showError, enableHighAccuracy: true
+      document.getElementById("trailName").innerHTML = "You are not at a trail. Go to a trail head and reload this page"
       this.disabled = true
     navigator.geolocation.watchPosition watchPos, showError, enableHighAccuracy: true
   else

@@ -1,13 +1,13 @@
 <%= link_to "Uwharrie Offroad", root_path, :class => 'brand' %>
 <ul class="nav pull-left">
   <li>
-  <%= link_to "About", "/about" %>
+  <%= link_to "About", about_path %>
   </li>
 </ul>
 <ul class="nav pull-right">
   <% if logged_in? %>
     <li>
-    <%= link_to current_user.name, current_user %>
+    <%= link_to current_user.name, "/user/#{current_user.name}" %>
     </li>
     <li>
     <%= link_to 'Edit account', edit_user_path(current_user)  %>

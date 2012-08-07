@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.update_attributes(:deleted => true)
+    @comment.update_attributes(:deleted => true, :body => "Comment has been deleted by user")
     redirect_to @comment.get_trail
   end
 
