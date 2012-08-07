@@ -6,8 +6,10 @@ jQuery ->
 
 window.onload = ->
   if navigator.geolocation
-    navigator.geolocation.getCurrentPosition setTrail, showError, enableHighAccuracy: true
-    navigator.geolocation.watchPosition showCurrentPos, showError, enableHighAccuracy: true
+    document.getElementById("locationBegin").onclick = ->
+      navigator.geolocation.getCurrentPosition setTrail, showError, enableHighAccuracy: true
+      navigator.geolocation.watchPosition showCurrentPos, showError, enableHighAccuracy: true
+      this.disabled = true
   else
     document.write "Your device cannot be located"
 
