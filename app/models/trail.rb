@@ -10,7 +10,7 @@ class Trail < ActiveRecord::Base
   has_many :locations, :dependent => :destroy
 
   def to_param
-    "#{id}-#{name}"
+    "#{id}-#{name.downcase.gsub(/ /, '-')}"
   end
 
   def best_timing
