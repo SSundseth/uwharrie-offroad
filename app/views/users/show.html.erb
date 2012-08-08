@@ -21,6 +21,7 @@
     <% @user.recent_times.each do |t| %>
       <%= link_to t.trail.name, t.trail %>:
       <%= Time.at(t.seconds).utc.strftime("%H:%M:%S") %>
+      on <%= t.created_at.strftime("%d %b. %Y") %>
       <br />
     <% end %>
 </div>
