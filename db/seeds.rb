@@ -39,7 +39,7 @@ Trail.all.each do |trail|
   when "Dickey Bell"
     trail.locations.create(:latitude => 35.396467, :longitude => -80.055571)
     trail.locations.create(:latitude => 35.411543, :longitude => -80.071535)
-  when "Rocky Mnt. Loop"
+  when "Rocky Mountain Loop"
     trail.locations.create(:latitude => 35.423714, :longitude => -80.045185)
     trail.locations.create(:latitude => 35.411543, :longitude => -80.071535)
     trail.locations.create(:latitude => 35.417349, :longitude => -80.055099)
@@ -51,15 +51,5 @@ Trail.all.each do |trail|
     trail.locations.create(:latitude => 40.016847, :longitude => -105.277305)
     trail.locations.create(:latitude => 40.004977, :longitude => -105.250634)
   else puts "wrong trail name"
-  end
-end
-
-# Put user ids in an array
-ids = User.all(:select => :id).collect(&:id)
-
-# Times
-5.times do |t|
-  Trail.all.each do |trail|
-    trail.timings.create(:user_id => ids.shuffle.first, :seconds => (rand(7000) + 3600))
   end
 end
