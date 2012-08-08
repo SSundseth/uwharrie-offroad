@@ -7,7 +7,7 @@ Trail.create(:name => 'Daniel',          :length => '2.0 miles', :difficulty => 
 Trail.create(:name => 'Wolfden',         :length => '0.9 miles', :difficulty => 'Very Easy')
 Trail.create(:name => 'Dutch John',      :length => '2.1 miles', :difficulty => 'Moderate')
 Trail.create(:name => 'Slab Pile',       :length => '0.9 miles', :difficulty => 'Easy')
-Trail.create(:name => 'Rocky Mnt. Loop', :length => '2.8 miles', :difficulty => 'Hard')
+Trail.create(:name => 'Rocky Mountain Loop', :length => '2.8 miles', :difficulty => 'Hard')
 Trail.create(:name => 'Saw Mill',        :length => '1.6 miles', :difficulty => 'Moderate')
 Trail.create(:name => 'Falls Dam',       :length => '2.7 miles', :difficulty => 'Easy')
 Trail.create(:name => 'Dickey Bell',     :length => '2.9 miles', :difficulty => 'Moderate')
