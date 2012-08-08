@@ -40,7 +40,7 @@ Trail.all.each do |trail|
   when "Dickey Bell"
     trail.locations.create(:latitude => 35.396467, :longitude => -80.055571)
     trail.locations.create(:latitude => 35.411543, :longitude => -80.071535)
-  when "Rocky Mnt. Loop"
+  when "Rocky Mountain Loop"
     trail.locations.create(:latitude => 35.423714, :longitude => -80.045185)
     trail.locations.create(:latitude => 35.411543, :longitude => -80.071535)
     trail.locations.create(:latitude => 35.417349, :longitude => -80.055099)
@@ -54,8 +54,3 @@ Trail.all.each do |trail|
   else puts "wrong trail name"
   end
 end
-
-# Users
-User.create(:name => 'Stef',   :email => 'stefan.sundseth@viget.com', :password => 'password')
-User.create(:name => 'Rob',    :email => 'robsemail@email.com',       :password => 'password')
-User.create(:name => 'Andrew', :email => 'andrewsemail@email.com',    :password => 'password')
