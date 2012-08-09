@@ -40,20 +40,11 @@ describe UsersController do
 
   describe "GET #show" do
     before do
-      get :show, :id => user.id
+      get :show, :name => user.name
     end
 
     it { should respond_with(:success) }
     it { should render_template(:show) }
-  end
-
-  describe 'GET #index' do
-    before do
-      get :index
-    end
-
-    it { should respond_with(:success) }
-    it { should render_template(:index) }
   end
 
   describe "GET #edit" do
@@ -73,7 +64,7 @@ describe UsersController do
           :password => 'newpassword' }
       end
 
-      it { should redirect_to(user) }
+      it { should redirect_to("/user/#{user.name}") }
       it { should set_the_flash.to("Account Updated") }
     end
 

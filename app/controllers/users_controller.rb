@@ -21,10 +21,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def index
-    @users = User.all
-  end
-
   def show
     @user = User.find_by_name(params[:name])
   end
@@ -33,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account Updated"
-      redirect_to @user
+      redirect_to "/user/#{@user.name}"
     else
       flash[:error] = "Account not Updated"
       render :edit

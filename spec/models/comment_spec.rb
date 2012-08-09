@@ -16,9 +16,10 @@ describe Comment do
     end
 
     it "should update the trail's comment count" do
+      c1 = FactoryGirl.create(:comment, :commentable => trail, :user_id => user.id)
       lambda {
-        FactoryGirl.create(:comment, :commentable => trail, :user_id => user.id)
-      }.should change(trail.comments, :count).by(1)
+        FactoryGirl.create(:comment, :commentable => c1, :user_id => user.id)
+      }.should change { trail.comment_count }.by(1)
     end
 
     it "should update the user's comment count" do

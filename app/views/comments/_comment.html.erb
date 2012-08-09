@@ -1,7 +1,7 @@
 <% for comment in object %>
   <div class="row">
     <div class="span10">
-      <div id="comment">
+      <div class="comment">
         <span style="color:grey"><%= render "comments/info", :object => [comment] %></span>
         <% if comment.deleted %>
           <p><span style="color:grey">Comment has been deleted by user</span></p>
