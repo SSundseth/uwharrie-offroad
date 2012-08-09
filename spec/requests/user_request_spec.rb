@@ -79,7 +79,7 @@ describe "User" do
       click_button "Edit"
 
       page.should have_content "Account Updated"
-      current_path.should == user_path(user)
+      current_path.should == "/user/#{user.name}"
     end
   end
 

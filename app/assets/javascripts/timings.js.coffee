@@ -24,7 +24,7 @@ watchPos = (position) ->
     clearInterval(window.timer)
     subButton = document.getElementById('submitButton')
     subButton.style.display = "block"
-    subButton.innerHTML = "Submit Your Time!"
+    subButton.innerHTML = "Submit Your Time: #{window.elapsed}"
     subButton.onclick = ->
       $.post(
         "/timings"
