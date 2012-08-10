@@ -9,7 +9,6 @@ gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-boots
 gem 'simple_form'
 gem 'thin'
 gem 'heroku'
-gem 'gon'
 
 group :test, :development do
   gem 'rspec-rails'
@@ -23,4 +22,5 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'yui-compressor'
 end
