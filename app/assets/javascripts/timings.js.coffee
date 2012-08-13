@@ -6,10 +6,6 @@ jQuery ->
 
 window.onload = ->
   if navigator.geolocation
-    document.getElementById("locationBegin").onclick = ->
-      navigator.geolocation.getCurrentPosition setTrail, showError, enableHighAccuracy: true
-      document.getElementById("trailName").innerHTML = "You are not at a trail. Go to a trail head and reload this page"
-      this.disabled = true
     navigator.geolocation.watchPosition watchPos, showError, enableHighAccuracy: true
   else
     document.write "Your device cannot be located"
@@ -20,24 +16,25 @@ watchPos = (position) ->
   document.getElementById("currentLat").innerHTML = lat
   document.getElementById("currentLon").innerHTML = lon
 
-  if isInArea(position, window.endpoint[0], window.endpoint[1])
-    clearInterval(window.timer)
-    subButton = document.getElementById('submitButton')
-    subButton.style.display = "block"
-    subButton.innerHTML = "Submit Your Time: #{window.elapsed}"
-    subButton.onclick = ->
-      $.post(
-        "/timings"
-        timing: { user_id: window.user.id, trail_id: window.trail.id, seconds: window.elapsed }
-        success: alert 'hooray for ajax!'
-      )
+  if window.endpoint
+    if isInArea(position, window.endpoint[0], window.endpoint[1])
+      clearInterval(window.timer)
+      subButton = document.getElementById('submitButton')
+      subButton.style.display = "block"
+      subButton.innerHTML = "Submit Your Time: #{window.elapsed}"
+      subButton.onclick = ->
+        $.post(
+          "/timings"
+          timing: { user_id: window.user.id, trail_id: window.trail.id, seconds: window.elapsed }
+          success: alert 'hooray for ajax!'
+        )
+        true
       true
-    true
+  else
+    for trail in window.trails
+      if atTrail(position, trail)
+        timerStart(position, trail)
 
-setTrail = (position) ->
-  for trail in window.trails
-    if atTrail(position, trail)
-      timerStart(position, trail)
 
 timerStart = (position, trail) ->
   window.trail = trail
