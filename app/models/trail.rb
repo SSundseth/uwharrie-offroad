@@ -13,10 +13,7 @@ class Trail < ActiveRecord::Base
     "#{id}-#{name.downcase.gsub(/ /, '-')}"
   end
 
-  def best_timing
-    timings.order('seconds ASC').first
-  end
-  def best_time_user
-    best_timing.user
+  def leaderboard
+    timings.order('seconds ASC').limit(5)
   end
 end

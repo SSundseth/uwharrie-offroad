@@ -5,6 +5,27 @@
   font-size: 8pt;
 }
 
+#trail-list {
+  list-style: none;
+  display: none;
+}
+
+.trails a {
+  width: 100%;
+	background: transparent;
+  color: #732d06;
+  font-family: Droid Sans;
+	font-size: 26px;
+	font-weight: bold;
+  margin: 0;
+  padding: 3px 10px 5px 0px;
+  border-bottom: 1px solid #ccc;
+}
+
+.trails a:hover {
+  text-decoration: none;
+}
+
 ul#topo-map {
   list-style: none;
   background: url(/assets/uwharrie-topo-highlights.jpg) no-repeat 0 0;

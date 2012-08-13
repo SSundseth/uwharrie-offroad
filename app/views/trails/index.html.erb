@@ -1,4 +1,4 @@
-<h1>Click on a Trail to see more info</h1>
+<h1>Trails</h1>
 <div class="trail-map">
   <ul id="topo-map">
     <% @trails.each do |t| %>
@@ -7,3 +7,12 @@
   </ul>
   Image copyrighted by Southeast Overland LLC. All rights reserved.
 </div>
+
+
+<p>
+  <ul id="trail-list">
+    <% @trails.each do |t| %>
+      <li class="trails"><%= link_to t.name, t %></li><br />
+    <% end %>
+  </ul>
+</p>

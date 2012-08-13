@@ -2,36 +2,21 @@
   <h1><span>Time Yourself</span></h1>
 </div>
 
-<div class="row">
-  <div class="span4">
-    <%= content_tag "div", id: 'tripmeter', data: {
-      trails: Trail.all,
-      locations: Location.all,
-      user: current_user
-    } do %>
-      <p>
-      <button id="locationBegin" class="btn btn-primary">Click here when GPS is active</button>
-      <p>
-        Current Location (lat, lon):<br/>
-        <span id="currentLat">???</span>&deg;, <span id="currentLon">???</span>&deg;
-      </p>
-      <p>
-        Trail Name: <span id="trailName">Waiting for GPS...</span>
-      </p>
-      <button id="startButton" class="btn btn-primary">Waiting...</button>
-      <p>
-        Time: <span id="timer">???</span>
-      </p>
-      <button id="submitButton" class="btn-large btn-success" style="display: none"></button>
-    <% end %>
-  </div>
-  <div class="span4 offset1">
-    <h3>Instructions</h3>
-    <ol>
-      <li> Your device's GPS might take a few seconds to locate itself, once it does click the button </li>
-      <li> If you are at a trail head, its name will appear. Click the button that says 'Begin Timing' </li>
-      <li> That's It! Head down the trail and when you reach the end a button will appear asking if you want to submit your time </li>
-      <li> Click the button and navigate to your account page, your new time should show up in the 'Recent Times' area </li>
-    </ol>
-  </div>
-</div>
+<%= content_tag "div", id: 'tripmeter', data: {
+  trails: Trail.all,
+  locations: Location.all,
+  user: current_user
+} do %>
+  <p>
+    Current Location (lat, lon):<br/>
+    <span id="currentLat">???</span>&deg;, <span id="currentLon">???</span>&deg;
+  </p>
+  <p>
+    Trail Name: <span id="trailName">???</span>
+  </p>
+  <button id="startButton" class="btn btn-primary">Begin Timing</button>
+  <p>
+    Time: <span id="timer">???</span>
+  </p>
+  <button id="submitButton" class="btn-large btn-success" style="display: none"></button>
+<% end %>

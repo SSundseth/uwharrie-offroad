@@ -5,15 +5,34 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Alfa+Slab+One' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="cleartype" content="on">
 </head>
 <body>
-  <header class="navbar navbar-fixed-top">
-    <nav class="navbar-inner">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
       <div class="container">
-        <%= render "layouts/navigation" %>
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a><%= link_to "Uwharrie Offroad", root_path, :class => 'brand' %></a>
+        <div class="nav-collapse">
+          <ul class="nav pull-left">
+            <li>
+            <%= link_to "About", about_path %>
+            </li>
+          </ul>
+          <%= render "layouts/navigation" %>
+        </div>
       </div>
-    </nav>
-  </header>
+    </div>
+  </div>
 
   <div id="main" role="main">
     <div class="container">
