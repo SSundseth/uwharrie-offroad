@@ -17,23 +17,14 @@ describe Trail do
       lambda { subject.destroy }.should change(Timing, :count).by(-1)
     end
   end
-  describe "#best_timing" do
+  describe "#leaderboard" do
     before do
       subject.timings.create(:user_id => user.id, :seconds => 600)
       subject.timings.create(:user_id => user.id, :seconds => 500)
     end
 
     it "returns timing with lowest seconds" do
-      subject.best_timing.seconds.should == 500
-    end
-  end
-
-  describe "#best_time_user" do
-    before do
-      subject.timings.create(:user_id => user.id, :seconds => 600)
-    end
-    it "returns the user" do
-      subject.best_time_user.should == user
+      subject.leaderboard.first.seconds.should == 500
     end
   end
 end

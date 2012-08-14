@@ -41,6 +41,7 @@
           <div class="span10 offset1">
             <%= render 'layouts/messages' %>
             <%= yield %>
+            <%= yield :new_timing if content_for?(:new_timing) %>
           </div>
         </div>
       </div>
