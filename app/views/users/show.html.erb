@@ -3,7 +3,7 @@
 </div>
 <div class="row">
   <div class="span4">
-    <h4>Best Times by Trail</h4>
+    <h2>Best Times by Trail</h2>
     <% @user.best_times.each do |t| %>
       <%= link_to t.trail.name, t.trail %>:
       <%= Time.at(t.min.to_i).utc.strftime("%H:%M:%S") %>
@@ -14,11 +14,11 @@
     <% end %>
   </div>
   <div class="span4 offset1">
-    <h4>Recent Times</h4>
+    <h2>Recent Times</h2>
     <% @user.recent_times.each do |t| %>
       <%= link_to t.trail.name, t.trail %>:
       <%= Time.at(t.seconds).utc.strftime("%H:%M:%S") %>
-      on <%= t.created_at.strftime("%d %b. %Y") %>
+      on <%= t.created_at.strftime("%D") %>
       <br />
     <% end %>
   </div>
