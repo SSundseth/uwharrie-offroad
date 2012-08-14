@@ -28,6 +28,7 @@
 
 
 <h3>Comments</h3>
+
 <% if @comments.any? %>
   <%= render "comments/comment", :object => @comments.newest_first %>
 <% else %>

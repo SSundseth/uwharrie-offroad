@@ -1,6 +1,7 @@
 # Delete all the things
 Trail.destroy_all
 Timing.destroy_all
+Comment.destroy_all
 
 # Trails
 Trail.create(:name => 'Daniel',          :length => '2.0 miles', :difficulty => 'Very Hard')
