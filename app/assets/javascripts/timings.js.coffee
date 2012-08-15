@@ -36,6 +36,9 @@ window.exports = ->
       for trail in window.trails
         if atTrail(position, trail)
           timerStart(position, trail)
+        else
+          document.getElementById("startButton").onclick = -> false
+          document.getElementById("trailName").innerHTML = '???'
 
 
   timerStart = (position, trail) ->
@@ -49,8 +52,6 @@ window.exports = ->
                        clock(start)
                     , 100
       this.disabled = true
-    startButton.innerHTML = "Begin timing"
-
 
   atTrail = (position, trail) ->
     trailLocs = ([loc.latitude, loc.longitude] for loc in window.locations when loc.trail_id is trail.id)
