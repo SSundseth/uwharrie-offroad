@@ -36,6 +36,7 @@ window.exports = ->
       for trail in window.trails
         if atTrail(position, trail)
           timerStart(position, trail)
+          break
         else
           document.getElementById("startButton").onclick = -> false
           document.getElementById("trailName").innerHTML = '???'
