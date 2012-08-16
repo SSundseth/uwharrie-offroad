@@ -8,7 +8,7 @@ class TrailsController < ApplicationController
 
   def show
     @trail = Trail.find(params[:id])
-    @comments = @trail.comments
+    @comments = @trail.comments.paginate(:page => params[:page], :per_page => 5)
     @commentable = @trail
   end
 end

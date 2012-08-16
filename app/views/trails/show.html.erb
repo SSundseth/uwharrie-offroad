@@ -7,6 +7,7 @@
 </div>
 
 <% if @trail.timings.any? %>
+  <h3>Leaderboard</h3>
   <ol>
   <% @trail.leaderboard.each do |timing| %>
       <li><strong><%= link_to timing.user.name, "/user/#{timing.user.name}" %></strong><br />
@@ -31,6 +32,9 @@
 
 <% if @comments.any? %>
   <%= render "comments/comment", :object => @comments.newest_first %>
+  <div class="paginated">
+    <%= will_paginate @comments %>
+  </div>
 <% else %>
   <span style="color:grey">No Comments Yet!</span>
 <% end %>
