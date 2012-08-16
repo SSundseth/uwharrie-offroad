@@ -23,7 +23,7 @@ window.exports = ->
         clearInterval(window.timer)
         subButton = document.getElementById('submitButton')
         subButton.style.display = "block"
-        subButton.innerHTML = "Submit Your Time: #{window.elapsed}"
+        subButton.innerHTML = "Submit Your Time!"
         subButton.onclick = ->
           $.post(
             "/timings"
@@ -72,7 +72,16 @@ window.exports = ->
   clock = (start) ->
     time = new Date().getTime() - start
     window.elapsed = Math.floor(time / 1000)
-    document.getElementById('timer').innerHTML = window.elapsed
+    hours = Math.floor( window.elapsed / 3600 )
+    minutes = Math.floor( (window.elapsed - hours * 3600) / 60 )
+    seconds = window.elapsed - (hours * 3600 + minutes * 60)
+
+    document.getElementById('hours').innerHTML = addZero hours
+    document.getElementById('minutes').innerHTML = addZero minutes
+    document.getElementById('seconds').innerHTML = addZero seconds
+
+  addZero = (num) ->
+    if num.toString().length < 2 then "0" + num.toString() else num.toString()
 
   showError = (error) ->
     switch error.code
